@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
-import Formulario from "./components/Formulario";
+import NotesApp from "./pages/NotesApp";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <Formulario />
+      <NotesApp />
     </div>
   );
 }
