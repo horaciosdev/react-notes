@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { INote } from "../interfaces/interfaces";
+import { INote } from "../interfaces/INote";
 import "../styles/Form.css";
 
 function getRandomColor() {
