@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Form from "../components/Form";
-import List from "../components/List";
+import Note from "../components/Note";
 import { INote } from "../interfaces/INote";
 
 export default function NotesApp() {
@@ -47,10 +47,23 @@ export default function NotesApp() {
   return (
     <div className="bg-blue-100 min-h-screen">
       <Form addNote={addNote} searchNotes={searchNotes} />
-      <List
-        notas={filteredNotes ? filteredNotes : notes}
-        onDeleteNote={onDeleteNote}
-      />
+      <div className="p-2 w-full flex justify-center items-start gap-4 flex-wrap">
+        {filteredNotes
+          ? filteredNotes.map((note: INote) => (
+              <Note
+                key={note.id}
+                note={note}
+                onDelete={() => onDeleteNote(note.id)}
+              />
+            ))
+          : notes.map((note: INote) => (
+              <Note
+                key={note.id}
+                note={note}
+                onDelete={() => onDeleteNote(note.id)}
+              />
+            ))}
+      </div>
     </div>
   );
 }
