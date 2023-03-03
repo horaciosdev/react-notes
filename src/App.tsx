@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import NotesApp from "./pages/NotesApp";
 
 function App() {

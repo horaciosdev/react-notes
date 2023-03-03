@@ -1,37 +1,23 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md shadow-gray-500;
+  }
+  .btn-success {
+    @apply btn-primary bg-gradient-to-b bg-green-500 hover:bg-green-700;
+  }
+  .btn-danger {
+    @apply btn-primary bg-gradient-to-b bg-red-500 hover:bg-red-700;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
+  .input-primary {
+    @apply pr-4 pl-4 pt-2 pb-2 shadow-md shadow-gray-400 w-full rounded-full border border-gray-500;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-button {
-  cursor: pointer;
-  padding: 10px;
-  font-weight: bold;
-  text-shadow: 2px 2px 2px #000;
-  font-size: 1em;
-}
-
-a {
-  text-decoration: inherit;
-}
-
-input,
-textarea {
-  padding: 5px;
+  .textarea-primary {
+    @apply input-primary rounded-xl;
+  }
 }

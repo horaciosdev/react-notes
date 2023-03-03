@@ -1,11 +1,9 @@
 import { INote } from "../interfaces/INote";
 import Note from "./Note";
 
-import "../styles/List.css";
-
 export default function List(props: any) {
   return (
-    <div className="note-list">
+    <div className="p-2 w-full flex justify-center items-start gap-4 flex-wrap">
       {props.notas.map((note: INote) => (
         <Note
           key={note.id}

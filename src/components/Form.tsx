@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { INote } from "../interfaces/INote";
-import "../styles/Form.css";
 
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 
-export default function Formulario(props: any) {
+export default function Form(props: any) {
   const [titulo, setTitulo] = useState("");
   const [corpo, setCorpo] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [search, setSearch] = useState("");
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -24,11 +24,20 @@ export default function Formulario(props: any) {
 
     setTitulo("");
     setCorpo("");
+    setSearch("");
     setOpenModal(false);
   }
 
+  const handleSearch = (searchInput: string) => {
+    setSearch(searchInput);
+    props.searchNotes(searchInput);
+  };
+
   const handleOpenModal = () => {
     openModal ? setOpenModal(false) : setOpenModal(true);
+    if (search) {
+      setTitulo(search);
+    }
   };
 
   const handleCancelNote = () => {
@@ -36,42 +45,61 @@ export default function Formulario(props: any) {
     setCorpo("");
     setOpenModal(false);
   };
-
   return (
     <>
-      <button className="open-modal-button" onClick={() => handleOpenModal()}>
-        +
-      </button>
+      <div className="flex justify-center space-x-2 p-5">
+        <label className="flex flex-col justify-center items-center">
+          <input
+            className="input-primary"
+            type="text"
+            placeholder="Type to search..."
+            value={search}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+        </label>
+        <button
+          type="button"
+          className="btn-success"
+          onClick={() => handleOpenModal()}
+        >
+          Add Note
+        </button>
+      </div>
       {openModal && (
-        <div className="overlay">
-          <div className="modal">
-            <form className="add-note-form" onSubmit={handleSubmit}>
-              <label>
-                Title:
-                <input
-                  type="text"
-                  value={titulo}
-                  onChange={(e) => setTitulo(e.target.value)}
-                />
-              </label>
-              <label>
-                Text:
-                <textarea
-                  value={corpo}
-                  onChange={(e) => setCorpo(e.target.value)}
-                />
-              </label>
-              <button className="add-note-button" type="submit">
+        <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
+          <form
+            className="flex flex-col max-w-xs w-96 shadow-md shadow-gray-800 justify-center item-center gap-4 bg-white mt-5 p-5 rounded-xl"
+            onSubmit={handleSubmit}
+          >
+            <label className="flex flex-col justify-center items-center">
+              Title:
+              <input
+                className="input-primary"
+                type="text"
+                value={titulo}
+                onChange={(e) => setTitulo(e.target.value)}
+              />
+            </label>
+            <label className="flex flex-col justify-center items-center">
+              Text:
+              <textarea
+                className="textarea-primary h-40"
+                value={corpo}
+                onChange={(e) => setCorpo(e.target.value)}
+              />
+            </label>
+            <div className="flex justify-center items-center gap-3">
+              <button className="btn-success w-40" type="submit">
                 Add Note
               </button>
               <button
-                className="cancel-button"
+                className="btn-danger w-40"
                 onClick={() => handleCancelNote()}
               >
                 Cancel
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       )}
     </>
