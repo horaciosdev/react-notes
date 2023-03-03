@@ -4,7 +4,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md shadow-gray-500;
+    @apply flex justify-center items-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md shadow-gray-500;
   }
   .btn-success {
     @apply btn-primary bg-gradient-to-b bg-green-500 hover:bg-green-700;
