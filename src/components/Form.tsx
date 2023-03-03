@@ -15,6 +15,8 @@ export default function Form(props: any) {
     event.preventDefault();
     const newNote: INote = {
       id: Date.now(),
+      date: Date.now(),
+      lastUpdate: Date.now(),
       title: titulo,
       text: corpo,
       color: getRandomColor(),
