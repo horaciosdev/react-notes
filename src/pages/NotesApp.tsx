@@ -119,7 +119,7 @@ export default function NotesApp() {
           searchNotes={searchNotes}
           handleOpenModal={handleOpenModal}
         />
-        {filteredNotes.length != notes.length && (
+        {search && (
           <div className="pb-2 border-b-2 border-gray-800 w-full flex flex-col justify-center items-center gap-2 flex-wrap">
             <h1 className="text-2xl">Search Result:</h1>
             <div className="flex justify-center items-center w-full bg-gray-100 p-4 rounded-xl shadow-md gap-4">
