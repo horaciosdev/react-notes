@@ -17,7 +17,7 @@ export default function Note(props: any) {
   );
   return (
     <div
-      className="flex flex-col justify-start items-center w-80 min-h-[15rem] p-4 rounded-xl gap-2 shadow-md shadow-gray-400"
+      className="flex flex-col justify-start items-center w-64 min-h-[15rem] p-4 rounded-xl gap-2 shadow-md shadow-gray-400"
       style={{ backgroundColor: note.color }}
     >
       <h1 className="font-semibold text-center text-xl">{note.title}</h1>
