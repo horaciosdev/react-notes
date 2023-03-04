@@ -111,7 +111,7 @@ export default function NotesApp() {
 
   return (
     <>
-      <div className="bg-blue-100 min-h-screen">
+      <main>
         <TopBar
           search={search}
           setSearch={setSearch}
@@ -119,17 +119,11 @@ export default function NotesApp() {
           searchNotes={searchNotes}
           handleOpenModal={handleOpenModal}
         />
-        <div className="p-2 w-full flex justify-center items-start gap-4 flex-wrap">
-          {filteredNotes
-            ? filteredNotes.map((note: INote) => (
-                <Note
-                  key={note.id}
-                  note={note}
-                  onDelete={() => onDeleteNote(note.id)}
-                  onEdit={onEdit}
-                />
-              ))
-            : notes.map((note: INote) => (
+        {filteredNotes.length != notes.length && (
+          <div className="pb-2 border-b-2 border-gray-800 w-full flex flex-col justify-center items-center gap-2 flex-wrap">
+            <h1 className="text-2xl">Search Result:</h1>
+            <div className="flex justify-center items-center w-full bg-gray-100 p-4 rounded-xl shadow-md gap-4">
+              {filteredNotes.map((note: INote) => (
                 <Note
                   key={note.id}
                   note={note}
@@ -137,34 +131,47 @@ export default function NotesApp() {
                   onEdit={onEdit}
                 />
               ))}
+              {filteredNotes.length == 0 && <div>No Results</div>}
+            </div>
+          </div>
+        )}
+        <div className="p-2 w-full flex justify-center items-start gap-4 flex-wrap">
+          {notes.map((note: INote) => (
+            <Note
+              key={note.id}
+              note={note}
+              onDelete={() => onDeleteNote(note.id)}
+              onEdit={onEdit}
+            />
+          ))}
         </div>
-      </div>
 
-      {creatingNewNote && (
-        <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
-          <NewNoteForm
-            title={title}
-            setTitle={setTitle}
-            text={text}
-            setText={setText}
-            handleCancelNote={handleCancelNote}
-            addNewNote={addNewNote}
-          />
-        </div>
-      )}
+        {creatingNewNote && (
+          <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
+            <NewNoteForm
+              title={title}
+              setTitle={setTitle}
+              text={text}
+              setText={setText}
+              handleCancelNote={handleCancelNote}
+              addNewNote={addNewNote}
+            />
+          </div>
+        )}
 
-      {editingId && (
-        <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
-          <EditNoteForm
-            title={title}
-            setTitle={setTitle}
-            text={text}
-            setText={setText}
-            handleCancelNote={handleCancelNote}
-            saveNote={saveNote}
-          />
-        </div>
-      )}
+        {editingId != 0 && (
+          <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
+            <EditNoteForm
+              title={title}
+              setTitle={setTitle}
+              text={text}
+              setText={setText}
+              handleCancelNote={handleCancelNote}
+              saveNote={saveNote}
+            />
+          </div>
+        )}
+      </main>
     </>
   );
 }
