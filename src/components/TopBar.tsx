@@ -1,4 +1,4 @@
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaStickyNote } from "react-icons/fa";
 import { useState } from "react";
 
 export default function TopBar(props: any) {
@@ -11,6 +11,12 @@ export default function TopBar(props: any) {
 
   return (
     <>
+      <header>
+        <h1 className="flex justify-center items-center gap-2 pt-4 pb-3 text-5xl font-bold text-green-600 bg-blue-200">
+          <FaStickyNote className="text-blue-500 bg-white" />
+          NoTes
+        </h1>
+      </header>
       <div className="flex justify-center space-x-2 p-5">
         <label className="flex flex-col justify-center items-center">
           <input
