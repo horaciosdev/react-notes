@@ -4,6 +4,13 @@ import Note from "../components/Note";
 import { INote } from "../interfaces/INote";
 import NewNoteForm from "../components/NewNoteForm";
 import EditNoteForm from "../components/EditNoteForm";
+import {
+  Box,
+  ImageList,
+  ImageListItem,
+  Modal,
+  Typography,
+} from "@mui/material";
 
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 90%)";
@@ -79,9 +86,10 @@ export default function NotesApp() {
   };
 
   const handleCancelNote = () => {
+    setOpenModal(false);
+    setEditingId(0);
     setTitle("");
     setText("");
-    setOpenModal(false);
   };
 
   const onEdit = (noteId: number) => {
@@ -110,68 +118,138 @@ export default function NotesApp() {
   }, [notes]);
 
   return (
-    <>
-      <main>
-        <TopBar
-          search={search}
-          setSearch={setSearch}
-          addNote={addNewNote}
-          searchNotes={searchNotes}
-          handleOpenModal={handleOpenModal}
-        />
-        {search && (
-          <div className="pb-2 border-b-2 border-gray-800 w-full flex flex-col justify-center items-center gap-2 flex-wrap">
-            <h1 className="text-2xl">Search Result:</h1>
-            <div className="flex justify-center items-center w-full bg-gray-100 p-4 rounded-xl shadow-md gap-4">
-              {filteredNotes.map((note: INote) => (
+    <Box>
+      <TopBar
+        search={search}
+        setSearch={setSearch}
+        addNote={addNewNote}
+        searchNotes={searchNotes}
+        handleOpenModal={handleOpenModal}
+      />
+
+      {search && (
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            p: "1rem",
+            pt: "1rem",
+            bgcolor: "lightgray",
+          }}
+        >
+          <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
+            Search Result:
+          </Typography>
+          <ImageList
+            variant="masonry"
+            sx={{
+              columnCount: {
+                xs: "1 !important",
+                sm: "2 !important",
+                md: "3 !important",
+                lg: "4 !important",
+                xl: "5 !important",
+              },
+            }}
+            gap={8}
+          >
+            {filteredNotes.map((note: INote) => (
+              <ImageListItem key={note.id}>
                 <Note
                   key={note.id}
                   note={note}
                   onDelete={() => onDeleteNote(note.id)}
                   onEdit={onEdit}
                 />
-              ))}
-              {filteredNotes.length == 0 && <div>No Results</div>}
-            </div>
-          </div>
-        )}
-        <div className="p-2 w-full flex justify-center items-start gap-4 flex-wrap">
+              </ImageListItem>
+            ))}
+            {filteredNotes.length == 0 && <div>No Results</div>}
+          </ImageList>
+        </Box>
+      )}
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+          p: "1rem",
+          pt: "1rem",
+        }}
+      >
+        <ImageList
+          variant="masonry"
+          sx={{
+            columnCount: {
+              xs: "1 !important",
+              sm: "2 !important",
+              md: "3 !important",
+              lg: "4 !important",
+              xl: "5 !important",
+            },
+          }}
+          gap={8}
+        >
           {notes.map((note: INote) => (
-            <Note
-              key={note.id}
-              note={note}
-              onDelete={() => onDeleteNote(note.id)}
-              onEdit={onEdit}
-            />
+            <ImageListItem key={note.id}>
+              <Note
+                note={note}
+                onDelete={() => onDeleteNote(note.id)}
+                onEdit={onEdit}
+              />
+            </ImageListItem>
           ))}
-        </div>
+        </ImageList>
+      </Box>
 
-        {creatingNewNote && (
-          <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
-            <NewNoteForm
-              title={title}
-              setTitle={setTitle}
-              text={text}
-              setText={setText}
-              handleCancelNote={handleCancelNote}
-              addNewNote={addNewNote}
-            />
-          </div>
-        )}
+      <Modal
+        open={creatingNewNote}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <NewNoteForm
+            title={title}
+            setTitle={setTitle}
+            text={text}
+            setText={setText}
+            handleCancelNote={handleCancelNote}
+            addNewNote={addNewNote}
+          />
+        </Box>
+      </Modal>
 
-        {editingId != 0 && (
-          <div className="z-10 fixed min-h-full min-w-full inset-0 bg-gray-800/[.8] flex justify-center items-start">
-            <EditNoteForm
-              title={title}
-              setTitle={setTitle}
-              text={text}
-              setText={setText}
-              handleCancelNote={handleCancelNote}
-              saveNote={saveNote}
-            />
-          </div>
-        )}
-      </main>
-    </>
+      <Modal
+        open={editingId != 0}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <EditNoteForm
+            title={title}
+            setTitle={setTitle}
+            text={text}
+            setText={setText}
+            handleCancelNote={handleCancelNote}
+            saveNote={saveNote}
+          />
+        </Box>
+      </Modal>
+    </Box>
   );
 }
