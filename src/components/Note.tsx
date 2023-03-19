@@ -1,4 +1,15 @@
-import { FaEdit, FaTrash } from "react-icons/fa";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  IconButton,
+  Typography,
+} from "@mui/material";
+
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Note(props: any) {
   const { note } = props;
@@ -16,39 +27,47 @@ export default function Note(props: any) {
     options
   );
   return (
-    <div
-      className="flex flex-col justify-start items-center w-64 min-h-[15rem] p-4 rounded-xl gap-2 shadow-md shadow-gray-400"
-      style={{ backgroundColor: note.color }}
-    >
-      <h1 className="font-semibold text-center text-xl">{note.title}</h1>
-      <p className="mb-3">{note.text}</p>
-
-      <div className="mt-auto">
-        <p className="text-xs">
-          <span className="font-bold mr-5">Created on:</span>
-          <span className="float-right">{date}</span>
-        </p>
-        <p className="text-xs">
-          <span className="font-bold mr-5">Last Updated:</span>
-          <span className="float-right">{lastUpdate}</span>
-        </p>
-      </div>
-      <div className="flex pt-2 border-t-2 w-full border-gray-300 justify-center items-center gap-3">
-        <button
-          type="button"
-          className="btn-primary"
-          onClick={() => props.onEdit(note.id)}
-        >
-          <FaEdit /> Edit
-        </button>
-        <button
-          type="button"
-          className="btn-danger"
-          onClick={() => props.onDelete(note.id)}
-        >
-          <FaTrash /> Delete
-        </button>
-      </div>
-    </div>
+    <Card sx={{ minHeight: "15rem", width: "16rem", lineBreak: "anywhere" }}>
+      <CardHeader
+        title={<Typography variant="h6">{note.title}</Typography>}
+        subheader={
+          <Box>
+            <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
+              <Typography
+                variant="caption"
+                fontWeight={700}
+                sx={{ fontSize: "12px" }}
+              >
+                Created:
+              </Typography>{" "}
+              {date}
+            </Typography>
+            <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
+              <Typography
+                variant="caption"
+                fontWeight={700}
+                sx={{ fontSize: "12px" }}
+              >
+                Updated:
+              </Typography>{" "}
+              {lastUpdate}
+            </Typography>
+          </Box>
+        }
+      />
+      <CardContent>
+        <Typography variant="body2" color="text.secondary">
+          {note.text}
+        </Typography>
+      </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label="edit" onClick={() => props.onEdit(note.id)}>
+          <EditIcon />
+        </IconButton>
+        <IconButton aria-label="delete" onClick={() => props.onDelete(note.id)}>
+          <DeleteIcon />
+        </IconButton>
+      </CardActions>
+    </Card>
   );
 }
