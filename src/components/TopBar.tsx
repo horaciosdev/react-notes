@@ -31,26 +31,30 @@ export default function TopBar(props: any) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar
         variant="dense"
-        sx={{ display: "flex", justifyContent: "space-between", p: "5px" }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          p: "5px",
+        }}
       >
         <FlexBox>
           <IconButton sx={{ p: "10px" }} aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <StickyNote2Icon
+
+          <IconButton
+            aria-label="logo"
+            size="medium"
             sx={{
-              bgcolor: "white",
-              borderRadius: "50%",
-              padding: "5px",
+              bgcolor: "background.paper",
               color: "rgb(59 130 246)",
-              width: 45,
-              height: 45,
-              margin: "5px",
             }}
-          />
+          >
+            <StickyNote2Icon />
+          </IconButton>
           <Typography
             variant="h4"
             color="inherit"
