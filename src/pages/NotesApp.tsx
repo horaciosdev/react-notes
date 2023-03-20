@@ -136,11 +136,13 @@ export default function NotesApp() {
             justifyContent: "center",
             p: "1rem",
             pt: "1rem",
-            bgcolor: "lightgray",
+            bgcolor: "text.secondary",
+            borderRadius: 3,
+            m: 1,
           }}
         >
           <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
-            Search Result:
+            Search Results:
           </Typography>
           <ImageList
             variant="masonry"
@@ -180,6 +182,9 @@ export default function NotesApp() {
           pt: "1rem",
         }}
       >
+        <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
+          Notes:
+        </Typography>
         <ImageList
           variant="masonry"
           sx={{
