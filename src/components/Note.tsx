@@ -28,6 +28,7 @@ export default function Note(props: any) {
   );
   return (
     <Card
+      elevation={4}
       sx={{
         maxWidth: "18rem",
         width: "100%",
