@@ -49,7 +49,13 @@ export default function Header(props: any) {
         </Button>
       </Box>
 
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <DarkModeIcon />
         <Switch onChange={(e) => setLightMode(lightMode ? false : true)} />
         <LightModeIcon />
