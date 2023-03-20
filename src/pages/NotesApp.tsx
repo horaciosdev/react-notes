@@ -6,6 +6,7 @@ import NewNoteForm from "../components/NewNoteForm";
 import EditNoteForm from "../components/EditNoteForm";
 import {
   Box,
+  Divider,
   ImageList,
   ImageListItem,
   Modal,
@@ -131,70 +132,92 @@ export default function NotesApp() {
         handleOpenModal={handleOpenModal}
       />
 
+      <Divider />
+
       {search && (
-        <Box
-          sx={{
-            p: "1rem",
-            bgcolor: "text.secondary",
-            borderRadius: 3,
-            m: 1,
-          }}
-        >
+        <Box>
           <Typography
-            variant="h4"
-            sx={{ textAlign: "center", color: "#000", mb: 2 }}
+            variant="h5"
+            sx={{
+              bgcolor: "background.paper",
+              borderRadius: 3,
+              m: 1,
+              mt: 2,
+              pl: 4,
+            }}
           >
             Search Results:
           </Typography>
           <Box
             sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "center",
+              bgcolor: "text.secondary",
+              borderRadius: 3,
+              mb: 1,
+              ml: 1,
+              mr: 1,
+              pt: 2,
             }}
           >
-            <ImageList
-              variant="masonry"
+            <Box
               sx={{
-                columnCount: {
-                  xs: "1 !important",
-                  sm: "2 !important",
-                  md: "3 !important",
-                  lg: "4 !important",
-                  xl: "5 !important",
-                },
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "center",
               }}
-              gap={8}
             >
-              {filteredNotes.map((note: INote) => (
-                <ImageListItem key={note.id}>
-                  <Note
-                    key={note.id}
-                    note={note}
-                    onDelete={() => onDeleteNote(note.id)}
-                    onEdit={onEdit}
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
+              <ImageList
+                variant="masonry"
+                sx={{
+                  pb: 3,
+                  pl: 3,
+                  pr: 3,
+                  columnCount: {
+                    xs: "1 !important",
+                    sm: "2 !important",
+                    md: "3 !important",
+                    lg: "4 !important",
+                    xl: "5 !important",
+                  },
+                }}
+                gap={8}
+              >
+                {filteredNotes.map((note: INote) => (
+                  <ImageListItem key={note.id}>
+                    <Note
+                      key={note.id}
+                      note={note}
+                      onDelete={() => onDeleteNote(note.id)}
+                      onEdit={onEdit}
+                    />
+                  </ImageListItem>
+                ))}
+              </ImageList>
 
-            {filteredNotes.length == 0 && (
-              <Typography color="black" sx={{ textAlign: "center" }}>
-                No Results
-              </Typography>
-            )}
+              {filteredNotes.length == 0 && (
+                <Typography color="black" sx={{ textAlign: "center" }}>
+                  No Results
+                </Typography>
+              )}
+            </Box>
           </Box>
         </Box>
       )}
 
-      <Box
-        sx={{
-          p: "1rem",
-        }}
-      >
+      <Divider />
+
+      <Box>
         {search && (
-          <Typography variant="h4" sx={{ textAlign: "center", mb: 2 }}>
+          <Typography
+            variant="h5"
+            sx={{
+              bgcolor: "background.paper",
+              borderRadius: 3,
+              m: 1,
+              mt: 2,
+              pl: 4,
+            }}
+          >
             Notes:
           </Typography>
         )}
@@ -204,11 +227,20 @@ export default function NotesApp() {
             flexWrap: "wrap",
             alignItems: "center",
             justifyContent: "center",
+            bgcolor: "background.paper",
+            borderRadius: 3,
+
+            pt: 2,
+            ml: 1,
+            mr: 1,
           }}
         >
           <ImageList
             variant="masonry"
             sx={{
+              pb: 3,
+              pl: 3,
+              pr: 3,
               columnCount: {
                 xs: "1 !important",
                 sm: "2 !important",
