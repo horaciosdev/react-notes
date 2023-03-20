@@ -134,12 +134,7 @@ export default function NotesApp() {
       {search && (
         <Box
           sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
             p: "1rem",
-            pt: "1rem",
             bgcolor: "text.secondary",
             borderRadius: 3,
             m: 1,
@@ -148,34 +143,46 @@ export default function NotesApp() {
           <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
             Search Results:
           </Typography>
-          <ImageList
-            variant="masonry"
+          <Box
             sx={{
-              columnCount: {
-                xs: "1 !important",
-                sm: "2 !important",
-                md: "3 !important",
-                lg: "4 !important",
-                xl: "5 !important",
-              },
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            gap={8}
           >
-            {filteredNotes.map((note: INote) => (
-              <ImageListItem key={note.id}>
-                <Note
-                  key={note.id}
-                  note={note}
-                  onDelete={() => onDeleteNote(note.id)}
-                  onEdit={onEdit}
-                />
-              </ImageListItem>
-            ))}
-            {filteredNotes.length == 0 && <div>No Results</div>}
-          </ImageList>
+            <ImageList
+              variant="masonry"
+              sx={{
+                columnCount: {
+                  xs: "1 !important",
+                  sm: "2 !important",
+                  md: "3 !important",
+                  lg: "4 !important",
+                  xl: "5 !important",
+                },
+              }}
+              gap={8}
+            >
+              {filteredNotes.map((note: INote) => (
+                <ImageListItem key={note.id}>
+                  <Note
+                    key={note.id}
+                    note={note}
+                    onDelete={() => onDeleteNote(note.id)}
+                    onEdit={onEdit}
+                  />
+                </ImageListItem>
+              ))}
+              {filteredNotes.length == 0 && <div>No Results</div>}
+            </ImageList>
+          </Box>
         </Box>
       )}
 
+      <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
+        Notes:
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -186,9 +193,6 @@ export default function NotesApp() {
           pt: "1rem",
         }}
       >
-        <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
-          Notes:
-        </Typography>
         <ImageList
           variant="masonry"
           sx={{
