@@ -6,6 +6,7 @@ import {
   CardHeader,
   IconButton,
   Typography,
+  Grow,
 } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
@@ -27,55 +28,64 @@ export default function Note(props: any) {
     options
   );
   return (
-    <Card
-      elevation={4}
-      sx={{
-        maxWidth: "18rem",
-        width: "100%",
-        lineBreak: "anywhere",
-      }}
+    <Grow
+      in={true}
+      style={{ transformOrigin: "50% 50% 50%" }}
+      {...(true ? { timeout: 1000 } : {})}
     >
-      <CardHeader
-        title={<Typography variant="h6">{note.title}</Typography>}
-        subheader={
-          <Box>
-            <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
-              <Typography
-                variant="caption"
-                fontWeight={700}
-                sx={{ fontSize: "12px" }}
-              >
-                Created:
-              </Typography>{" "}
-              {date}
-            </Typography>
-            <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
-              <Typography
-                variant="caption"
-                fontWeight={700}
-                sx={{ fontSize: "12px" }}
-              >
-                Updated:
-              </Typography>{" "}
-              {lastUpdate}
-            </Typography>
-          </Box>
-        }
-      />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {note.text}
-        </Typography>
-      </CardContent>
+      <Card
+        elevation={4}
+        sx={{
+          maxWidth: "18rem",
+          width: "100%",
+          lineBreak: "anywhere",
+        }}
+      >
+        <CardHeader
+          title={<Typography variant="h6">{note.title}</Typography>}
+          subheader={
+            <Box>
+              <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
+                <Typography
+                  variant="caption"
+                  fontWeight={700}
+                  sx={{ fontSize: "12px" }}
+                >
+                  Created:
+                </Typography>{" "}
+                {date}
+              </Typography>
+              <Typography variant="subtitle2" sx={{ fontSize: "12px" }}>
+                <Typography
+                  variant="caption"
+                  fontWeight={700}
+                  sx={{ fontSize: "12px" }}
+                >
+                  Updated:
+                </Typography>{" "}
+                {lastUpdate}
+              </Typography>
+            </Box>
+          }
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {note.text}
+          </Typography>
+        </CardContent>
 
-      <CardActions disableSpacing>
-        <IconButton aria-label="edit" onClick={() => props.onEdit(note.id)}>
-          <EditIcon />
-        </IconButton>
-        <IconButton aria-label="delete" onClick={() => props.onDelete(note.id)}>
-          <DeleteIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton aria-label="edit" onClick={() => props.onEdit(note.id)}>
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            aria-label="delete"
+            onClick={() => props.onDelete(note.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </Grow>
   );
 }
