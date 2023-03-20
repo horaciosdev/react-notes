@@ -10,6 +10,7 @@ import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 
 import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 
 import AddIcon from "@mui/icons-material/Add";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -69,6 +70,13 @@ export default function TopBar(props: any) {
                 <InputAdornment position="start">
                   <IconButton aria-label="search" size="small">
                     <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              }
+              endAdornment={
+                <InputAdornment onClick={() => setSearch("")} position="end">
+                  <IconButton aria-label="search" size="small">
+                    <ClearIcon />
                   </IconButton>
                 </InputAdornment>
               }
