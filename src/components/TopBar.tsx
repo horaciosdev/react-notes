@@ -24,7 +24,9 @@ const FlexBox = styled(Box)(({ theme }) => ({
 export default function TopBar(props: any) {
   const { search, setSearch } = props;
 
-  const handleSearch = (searchInput: string) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const searchInput = e.target.value;
     setSearch(searchInput);
     props.searchNotes(searchInput);
   };
@@ -61,11 +63,12 @@ export default function TopBar(props: any) {
             }}
           >
             <InputBase
+              onKeyPress={(e) => e.key === "Enter" && e.preventDefault()}
               sx={{ flex: 1 }}
               placeholder="Type to search..."
               inputProps={{ "aria-label": "Type to search..." }}
               value={search}
-              onChange={(e) => handleSearch(e.target.value)}
+              onChange={handleSearch}
               startAdornment={
                 <InputAdornment position="start">
                   <IconButton aria-label="search" size="small">
