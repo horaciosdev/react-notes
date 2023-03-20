@@ -140,7 +140,10 @@ export default function NotesApp() {
             m: 1,
           }}
         >
-          <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", color: "#000", mb: 2 }}
+          >
             Search Results:
           </Typography>
           <Box
@@ -174,48 +177,59 @@ export default function NotesApp() {
                   />
                 </ImageListItem>
               ))}
-              {filteredNotes.length == 0 && <div>No Results</div>}
             </ImageList>
+
+            {filteredNotes.length == 0 && (
+              <Typography color="black" sx={{ textAlign: "center" }}>
+                No Results
+              </Typography>
+            )}
           </Box>
         </Box>
       )}
 
-      <Typography variant="h4" sx={{ textAlign: "center", mb: "1rem" }}>
-        Notes:
-      </Typography>
       <Box
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "center",
           p: "1rem",
-          pt: "1rem",
         }}
       >
-        <ImageList
-          variant="masonry"
+        {search && (
+          <Typography variant="h4" sx={{ textAlign: "center", mb: 2 }}>
+            Notes:
+          </Typography>
+        )}
+        <Box
           sx={{
-            columnCount: {
-              xs: "1 !important",
-              sm: "2 !important",
-              md: "3 !important",
-              lg: "4 !important",
-              xl: "5 !important",
-            },
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-          gap={8}
         >
-          {notes.map((note: INote) => (
-            <ImageListItem key={note.id}>
-              <Note
-                note={note}
-                onDelete={() => onDeleteNote(note.id)}
-                onEdit={onEdit}
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
+          <ImageList
+            variant="masonry"
+            sx={{
+              columnCount: {
+                xs: "1 !important",
+                sm: "2 !important",
+                md: "3 !important",
+                lg: "4 !important",
+                xl: "5 !important",
+              },
+            }}
+            gap={8}
+          >
+            {notes.map((note: INote) => (
+              <ImageListItem key={note.id}>
+                <Note
+                  note={note}
+                  onDelete={() => onDeleteNote(note.id)}
+                  onEdit={onEdit}
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Box>
       </Box>
 
       <Modal
