@@ -17,8 +17,9 @@ export default function NewNoteForm(props: any) {
 
   return (
     <Box
+      bgcolor={"background.default"}
+      color={"text.primary"}
       sx={{
-        bgcolor: "background.paper",
         display: "flex",
         flexDirection: "column",
         mt: 4,
