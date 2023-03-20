@@ -85,6 +85,10 @@ export default function NotesApp() {
     }
   };
 
+  const handleCloseModal = () => {
+    handleCancelNote();
+  };
+
   const handleCancelNote = () => {
     setOpenModal(false);
     setEditingId(0);
@@ -212,48 +216,44 @@ export default function NotesApp() {
 
       <Modal
         open={creatingNewNote}
+        onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <NewNoteForm
-            title={title}
-            setTitle={setTitle}
-            text={text}
-            setText={setText}
-            handleCancelNote={handleCancelNote}
-            addNewNote={addNewNote}
-          />
-        </Box>
+        <NewNoteForm
+          title={title}
+          setTitle={setTitle}
+          text={text}
+          setText={setText}
+          handleCancelNote={handleCancelNote}
+          addNewNote={addNewNote}
+        />
       </Modal>
 
       <Modal
         open={editingId != 0}
+        onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <EditNoteForm
-            title={title}
-            setTitle={setTitle}
-            text={text}
-            setText={setText}
-            handleCancelNote={handleCancelNote}
-            saveNote={saveNote}
-          />
-        </Box>
+        <EditNoteForm
+          title={title}
+          setTitle={setTitle}
+          text={text}
+          setText={setText}
+          handleCancelNote={handleCancelNote}
+          saveNote={saveNote}
+        />
       </Modal>
     </Box>
   );
