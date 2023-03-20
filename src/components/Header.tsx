@@ -44,7 +44,7 @@ export default function Header(props: any) {
             target="_blank"
             underline="none"
           >
-            Other Projects
+            Portfolio
           </Link>
         </Button>
       </Box>
