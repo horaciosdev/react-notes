@@ -11,15 +11,14 @@ export default function Header(props: any) {
       sx={{
         bgcolor: "background.paper",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        p: "2px",
+        p: "2px 2rem",
         gap: 1,
       }}
     >
       <Box
         sx={{
-          margin: "0 auto",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
