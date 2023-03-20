@@ -27,7 +27,13 @@ export default function Note(props: any) {
     options
   );
   return (
-    <Card sx={{ minHeight: "15rem", width: "16rem", lineBreak: "anywhere" }}>
+    <Card
+      sx={{
+        maxWidth: "18rem",
+        width: "100%",
+        lineBreak: "anywhere",
+      }}
+    >
       <CardHeader
         title={<Typography variant="h6">{note.title}</Typography>}
         subheader={
@@ -60,6 +66,7 @@ export default function Note(props: any) {
           {note.text}
         </Typography>
       </CardContent>
+
       <CardActions disableSpacing>
         <IconButton aria-label="edit" onClick={() => props.onEdit(note.id)}>
           <EditIcon />
