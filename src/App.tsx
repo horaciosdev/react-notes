@@ -58,11 +58,20 @@ function App() {
       <Box
         bgcolor={"background.default"}
         color={"text.primary"}
-        sx={{ display: "flex", flexDirection: "column", width: "100%" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          minHeight: "100vh",
+        }}
       >
-        <Header lightMode={lightMode} setLightMode={setLightMode} />
-        <NotesApp />
-        <Footer />
+        <Box>
+          <Header lightMode={lightMode} setLightMode={setLightMode} />
+          <NotesApp />
+        </Box>
+        <Box sx={{ mt: "auto" }}>
+          <Footer />
+        </Box>
       </Box>
     </ThemeProvider>
   );
