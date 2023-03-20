@@ -38,7 +38,7 @@ export default function Note(props: any) {
         sx={{
           maxWidth: "18rem",
           width: "100%",
-          lineBreak: "anywhere",
+          wordBreak: "break-word",
         }}
       >
         <CardHeader
