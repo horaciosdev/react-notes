@@ -229,7 +229,6 @@ export default function NotesApp() {
             justifyContent: "center",
             bgcolor: "background.paper",
             borderRadius: 3,
-
             pt: 2,
             ml: 1,
             mr: 1,
