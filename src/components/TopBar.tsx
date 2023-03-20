@@ -50,7 +50,7 @@ export default function TopBar(props: any) {
             <MenuIcon />
           </IconButton>
         </FlexBox>
-        <FlexBox sx={{ width: "100%", maxWidth: 400, mr: 1 }}>
+        <FlexBox sx={{ width: "100%", maxWidth: 400, ml: 1, mr: 1 }}>
           <Paper
             component="form"
             sx={{
