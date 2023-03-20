@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import NotesApp from "./pages/NotesApp";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import { Box } from "@mui/system";
 
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <ThemeProvider theme={lightMode ? lightTheme : darkTheme}>
+      <CssBaseline />
       <Box
         bgcolor={"background.default"}
         color={"text.primary"}
