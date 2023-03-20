@@ -5,14 +5,12 @@ import {
   InputBase,
   Paper,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "@emotion/styled";
 
-import StickyNote2Icon from "@mui/icons-material/StickyNote2";
 import SearchIcon from "@mui/icons-material/Search";
-import DeleteIcon from "@mui/icons-material/Delete";
+
 import AddIcon from "@mui/icons-material/Add";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -41,41 +39,28 @@ export default function TopBar(props: any) {
         }}
       >
         <FlexBox>
-          <IconButton sx={{ p: "10px" }} aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-
           <IconButton
-            aria-label="logo"
-            size="medium"
+            aria-label="menu"
             sx={{
-              bgcolor: "background.paper",
-              color: "rgb(59 130 246)",
+              bgcolor: "background.default",
+              "&:hover": { bgcolor: "background.paper" },
             }}
           >
-            <StickyNote2Icon />
+            <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h4"
-            color="inherit"
-            fontWeight={700}
-            component="div"
-          >
-            Notes
-          </Typography>
         </FlexBox>
-        <FlexBox>
+        <FlexBox sx={{ width: "100%", maxWidth: 400, mr: 1 }}>
           <Paper
             component="form"
             sx={{
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: 400,
+              width: "100%",
             }}
           >
             <InputBase
-              sx={{ ml: 1, flex: 1 }}
+              sx={{ flex: 1 }}
               placeholder="Type to search..."
               inputProps={{ "aria-label": "Type to search..." }}
               value={search}
@@ -90,25 +75,18 @@ export default function TopBar(props: any) {
             />
           </Paper>
         </FlexBox>
+
         <FlexBox>
           <IconButton
             onClick={() => props.handleOpenModal(search)}
             aria-label="add"
             size="medium"
             sx={{
-              bgcolor: "background.paper",
+              bgcolor: "background.default",
+              "&:hover": { bgcolor: "background.paper" },
             }}
           >
             <AddIcon fontSize="inherit" />
-          </IconButton>
-          <IconButton
-            aria-label="delete"
-            size="medium"
-            sx={{
-              bgcolor: "background.paper",
-            }}
-          >
-            <DeleteIcon fontSize="inherit" />
           </IconButton>
         </FlexBox>
       </Toolbar>
